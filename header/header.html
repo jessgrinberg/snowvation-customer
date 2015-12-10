@@ -1,0 +1,124 @@
+
+
+  <div id="header" class="site-header">
+    <div class="top-bar hide-for-xsmall-only hide-for-small-only">
+      <div class="top-bar-logo"><a href="../home" class="top-bar-logo-link com">
+        <h1 class="top-bar-logo-name">Snowvation</h1>
+        </a>
+	  </div>
+      <div class="newtab-search-form" ng-if="isZip">
+        <label>Location :</label>
+		<ng-form name="zipform">
+        <input maxlength="20" class="newtab-search-text" placeholder="ZIP Code" type="text" ng-model="zipcode">
+		<a class="newtab-search-submit" ng-click="zipUpdate(zipcode)"><div class="icon-search"></div></a>
+        <ng-form>
+      </div>
+      <section class="top-bar-nav show-for-medium-up">
+        <ul>
+          <li class="top-bar-nav-li has-button" ng-if="!$token"><a ng-click="showSignUp()" class="top-bar-nav-button button small secondary" title="">Sign up</a> </li>
+          <li class="top-bar-nav-li" ng-if="!$token"> <a ng-click="showSignIn()" class="top-bar-nav-link" title="">Sign in</a> </li>
+		  <li class="top-bar-nav-li" ng-if="$token"> <a ng-click="logout()" class="top-bar-nav-link" title="">Sign out</a> </li>
+        </ul>
+      </section>
+    </div>
+    <div class="tab-bar hide-for-medium-up">
+      <div class="tab-bar-logo com"><a href="#" class="top-bar-logo-small-link com">
+        <h1 class="top-bar-logo-name">Snowvation</h1>
+        </a></div>
+      <ul class="pull-left">
+        <li class="top-bar-nav-li"><a href="#" data-target="mobile-menu" class="top-bar-nav-link js-toggle-menu"><i class="icon-list font-size-medium"></i></a>
+          <div id="mobile-menu" class="menu menu-drawer-left">
+            <div class="menu-container">
+              <div class="menu-main">
+                <div class="menu-section">
+                  <div class="menu-list">
+					<a ng-click="showSignUp()" ng-if="!$token" class="menu-list-link">Sign up</a>
+					<a ng-click="showSignIn()" ng-if="!$token" title="Sign in" class="menu-list-link">Sign in</a>
+					<a ng-click="logout()" ng-if="$token" title="Sign in" class="menu-list-link">Sign out</a> </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+
+
+
+<!--<div id="header" class="site-header">
+    <div class="top-bar hide-for-xsmall-only hide-for-small-only">
+      <div class="top-bar-logo"><a href="#" class="top-bar-logo-link com">
+        <h1 class="top-bar-logo-name">Snowvation</h1>
+        </a></div>
+      <nav id="location-picker" class="location-picker display-none"> <a href="#" data-target="location-menu" id="location-picker-link" class="location-picker-link js-toggle-menu">
+        <div class="location-picker-metro light">Choose your location</div>
+        </a>
+        <div id="location-menu" class="location-picker-menu menu">
+          <div class="menu-container">
+            <div class="menu-main">
+              <div class="menu-header">
+                <div class="row">
+                  <div class="column small-6">Metro</div>
+                  <div class="column small-6">Region</div>
+                </div>
+              </div>
+              <div class="menu-body">
+                <div style="overflow: hidden; padding: 0px; width: 317px; height: 400px; position: relative;" class="location-picker-menu-column menu-section js-lionbars">
+                  <div style="height: 396px;" class="lb-v-scrollbar">
+                    <div style="height: 151px;" class="lb-v-scrollbar-slider"></div>
+                  </div>
+                  <div style="padding: 0px; width: 333px; height: 400px;" class="lb-wrap" id="lb-wrap-0">
+                    <div class="lb-content">
+                      <div id="location-picker-metro-list" class="location-picker-menu-list menu-list menu-list-selectors with-arrows"> <a href="#" data-metro="16" class="menu-list-link selected">Atlanta / Georgia</a> <a href="#" data-metro="18" class="menu-list-link">Baltimore Area</a> <a href="#" data-metro="7" class="menu-list-link">Boston / New England</a> <a href="#" data-metro="3" class="menu-list-link">Chicago / Illinois</a> <a href="#" data-metro="20" class="menu-list-link">Dallas</a> </div>
+                    </div>
+                  </div>
+                </div>
+                <div style="overflow: hidden; padding: 0px; width: 318px; height: 400px; position: relative;" class="location-picker-menu-column menu-section js-lionbars">
+                  <div style="height: 396px;" class="lb-v-scrollbar">
+                    <div style="height: 278px;" class="lb-v-scrollbar-slider"></div>
+                  </div>
+                  <div style="padding: 0px; width: 335px; height: 400px;" class="lb-wrap" id="lb-wrap-1">
+                    <div class="lb-content">
+                      <div id="city-list" class="location-picker-menu-list menu-list menu-list-selectors with-meta"> <a href="#" data-clear-metro-history="16" class="menu-list-link clear-metro-history selected">All Atlanta / Georgia<span class="menu-list-link-meta">411</span></a> <a href="#" class="menu-list-link" data-macro="50">Atlanta<span class="menu-list-link-meta">288</span></a> <a href="#" class="menu-list-link" data-macro="199">Alpharetta / Roswell<span class="menu-list-link-meta">38</span></a> <a href="#" class="menu-list-link" data-macro="1012">Northeast Atlanta<span class="menu-list-link-meta">26</span></a> <a href="#" class="menu-list-link" data-macro="2521">Thomasville<span class="menu-list-link-meta">1</span></a> </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="menu-footer"><a href="#" class="secondary">Full List of Metros</a></div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <section class="top-bar-nav show-for-medium-up">
+		<ul>
+          <li class="top-bar-nav-li has-button"> <a  class="top-bar-nav-button button small secondary" ng-click="showSignUp()" title="">Sign up</a> </li>
+          <li class="top-bar-nav-li" ng-if="!$token"> <a  class="top-bar-nav-link" ng-click="showSignIn()" title="">Sign in</a> </li>
+		  <li class="top-bar-nav-li" ng-if="$token"> <a  class="top-bar-nav-link" ng-click="logout()" title="">Logout</a> </li>
+        </ul>
+      </section>
+    </div>
+    <div class="tab-bar hide-for-medium-up">
+      <div class="tab-bar-logo com"><a href="#" class="top-bar-logo-small-link com">
+        <h1 class="top-bar-logo-name">Snowvation</h1>
+        </a></div>
+      <ul class="pull-left">
+        <li class="top-bar-nav-li"><a href="#" data-target="mobile-menu" class="top-bar-nav-link js-toggle-menu"><i class="icon-list font-size-medium"></i></a>
+          <div id="mobile-menu" class="menu menu-drawer-left">
+            <div class="menu-container">
+              <div class="menu-main">
+                <div class="menu-section">
+                  <div class="menu-list"> 
+					<a class="menu-list-link" ng-click="showSignUp()">Sign up</a> 
+					<a ng-if="!$token" title="Sign in" class="menu-list-link"  ng-click="showSignIn()">Sign in</a>
+					<a ng-if="$token" title="Logout" class="menu-list-link"  ng-click="logout()">Logout</a>
+				</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>-->

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en"  ng-app="home">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
+<title>Home | Snowvation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="shortcut icon" href="../../images/favicon.ico" type="image/x-icon"/>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="css/app.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/home.css">
+<link rel="stylesheet" href="css/start.css">
+
+<!--<link rel="stylesheet" href="../../vendor/owl-carousel/owl.carousel.css">
+<link rel="stylesheet" href="../../vendor/owl-carousel/owl.theme.css">-->
+
+<!--[if lte IE 8]><link rel="stylesheet" href="../../css/node_app_ie8-0dc75256c16233d2735bea5dbbac747e.css"/><![endif]-->
+<!--[if lte IE 8]><link rel="stylesheet" href="../../css/home_ie8.css"/><![endif]-->
+<!--<script src="../../js/bundle_head.js"></script>-->
+<script src="vendor/jquery-2.1.4.min.js"></script>
+<!--<script src="../../vendor/owl-carousel/owl.carousel.js"></script>-->
+<!-- <script src="vendor/angular-1.4.7/angular.js"></script> -->
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+<script src="vendor/ngStorage/ngStorage.min.js"></script>
+<script src="web/home/home.js"></script>
+<script src="web/auth/auth.js"></script>
+<script src="js/directives.js"></script>
+<!--[if lte IE 8]><script src="../../js/ie8_compat.js"></script><![endif]-->
+<!--[if IE 9]><script src="../../js/ie9_compat.js"></script><![endif]-->
+<!--[if lte IE 9]><script src="../../js/ie_jquery.js"></script> <![endif]-->
+
+<link rel="stylesheet" href="js/reset.css"> <!-- CSS reset -->
+<link rel="stylesheet" href="js/style.css"> <!-- Resource style -->
+<script src="js/modernizr.js"></script> <!-- Modernizr -->
+<script src="js/main.js"></script>
+</head>
+<body class="ng-cloak start domain-com" ng-controller="authCtrl">
+<div class="master-container" ng-controller="homeCtrl">
+<!--   <ng-include src="'header/header.html'"></ng-include>
+ -->  
+ <header>
+ 	<div id="header" class="site-header">
+    <div class="top-bar hide-for-xsmall-only hide-for-small-only">
+      <div class="top-bar-logo"><a href="../home" class="top-bar-logo-link com">
+        <h1 class="top-bar-logo-name"><img src="css/img/logo.png"></h1>
+        </a>
+	  </div>
+      <div class="newtab-search-form" ng-if="isZip">
+        <label>Location :</label>
+		<ng-form name="zipform">
+        <input maxlength="20" class="newtab-search-text" placeholder="ZIP Code" type="text" ng-model="zipcode">
+		<a class="newtab-search-submit" ng-click="zipUpdate(zipcode)"><i class="fa fa-search"></i></a>
+        <ng-form>
+      </div>
+      <section class="top-bar-nav show-for-medium-up">
+        <ul>
+          <li class="top-bar-nav-li has-button" ng-if="!$token"><a ng-click="showSignUp()" class="top-bar-nav-button button small secondary" title="">Sign up</a> </li>
+          <li class="top-bar-nav-li" ng-if="!$token"> <a ng-click="showSignIn()" class="top-bar-nav-link" title="">Sign in</a> </li>
+		  <li class="top-bar-nav-li" ng-if="$token"> <a ng-click="logout()" class="top-bar-nav-link" title="">Sign out</a> </li>
+        </ul>
+      </section>
+    </div>
+    <div class="tab-bar hide-for-medium-up">
+      <div class="tab-bar-logo com"><a href="#" class="top-bar-logo-small-link com">
+        <h1 class="top-bar-logo-name">Snowvation</h1>
+        </a></div>
+      <ul class="pull-left">
+        <li class="top-bar-nav-li"><a href="#" data-target="mobile-menu" class="top-bar-nav-link js-toggle-menu"><i class="icon-list font-size-medium"></i></a>
+          <div id="mobile-menu" class="menu menu-drawer-left">
+            <div class="menu-container">
+              <div class="menu-main">
+                <div class="menu-section">
+                  <div class="menu-list">
+					<a ng-click="showSignUp()" ng-if="!$token" class="menu-list-link">Sign up</a>
+					<a ng-click="showSignIn()" ng-if="!$token" title="Sign in" class="menu-list-link">Sign in</a>
+					<a ng-click="logout()" ng-if="$token" title="Sign in" class="menu-list-link">Sign out</a> </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+ </header>
+
+
+
+  <section role="main" class="page-container">
+    <div class="page-header with-background">
+      <div id="page-header-hero" class="page-header-hero">
+        <div id="page-header-hero-wrapper" class="page-header-hero-wrapper" style="height:400px;">
+          <div class="page-header-hero-gradient"></div>
+          <div class="page-header-hero-img"></div>
+        </div>
+      </div>
+      <div class="max-width-wrapper">
+        <div class="page-header-content" style="height:400px; padding-top: 9.5rem;">
+          <div class="row txt-row">
+            <div class="column">
+              <h1 class="page-header-title"></h1>
+              <h2 >Instantly book your favorite ski and snowboard instructors!</h2> <!-- style="color:#25397c" -->
+             <!--<div style="width:100%; float:left;">
+		<ng-form>
+        <input maxlength="40" class="form-input margin-bottom txtFirstName search-fld" placeholder="" type="text" ng-model="searchText">
+        
+        <input type="submit" value="Find an Instructor / Resorts" class="button dtp-picker-button inpt-btn-new" ng-click="search(searchText)">
+        
+        <span style="color:Red;display:none;"></span> 
+		</ng-form>
+		</div>-->
+		<div class="search-field-content with-search">
+        <ng-form  class="dtp-picker-form">
+        <div class="dtp-picker-search-container">
+            <div class="dtp-picker-search-icon"><i class="fa fa-search"></i></div>
+            <input maxlength="40" class="dtp-picker-search" placeholder="Instructor / Resorts" type="text" ng-model="searchText">
+        </div>
+        <input type="submit" value="Find" class="button dtp-picker-button" ng-click="search(searchText)">
+        
+        <span style="color:Red;display:none;"></span> 
+        </ng-form>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div></div>
+    <div class="max-width-wrapper">
+      <div class="page-main">
+        <div class="page-main-content">
+          <div class="page-ad-section hide-for-xsmall-only hide-for-small-only hide-for-medium-only">
+            <div class="page-ad-link">
+              <div class="ad-google">
+                <div style="display: none;" class="page-ad-link">
+                  <div style="border: 0pt none;"> </div>
+                </div>
+                <div style="display: none;" class="page-ad-link">
+                  <div style="border: 0pt none;"> </div>
+                </div>
+              </div>
+            </div>
+            <div id="RightColumnElementContainer"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="cd-tabs">
+	<nav>
+		<ul class="cd-tabs-navigation">
+			<li><a data-content="inbox" class="selected" href="#0">Featured Resorts</a></li>
+			<li><a data-content="gallery" href="#0">Other Resorts</a></li>
+		</ul> <!-- cd-tabs-navigation -->
+	</nav>
+
+	<ul class="cd-tabs-content">
+		<li data-content="inbox" class="selected">
+			<ul class="photo-grid">
+				<li class="dis-in-b" ng-repeat="resort in resorts">
+					<a href="../instructors/#/?resortid={{resort._id}}">
+						<figure>
+							<img ng-src="{{resort.photoUrl}}" alt="{{resort.name}}">
+							<figcaption><p>View instructors</p></figcaption>
+						</figure>
+						<div class="sub-crip"><h3>{{resort.name}}</h3><p>{{resort.state}} | {{resort.city}}</p></div>
+					</a>
+				</li>				
+			</ul>
+		</li>
+
+		<li data-content="gallery">
+			<ul class="photo-grid">
+				<li class="dis-in-b" ng-repeat="resort in resorts">
+					<a href="../instructors/#/?resortid={{resort._id}}">
+						<figure>
+							<img ng-src="{{resort.photoUrl}}" alt="{{resort.name}}">
+							<figcaption><p>View instructors</p></figcaption>
+						</figure>
+						<div class="sub-crip"><h3>{{resort.name}}</h3><p>{{resort.state}} | {{resort.city}}</p></div>
+					</a>
+				</li>
+			</ul>
+		</li>
+	</ul> <!-- cd-tabs-content -->
+</div>
+  
+  
+<!--   <ng-include src="'footer/footer.html'"></ng-include>
+ -->  
+
+ <footer>
+  	
+<div id="footer" role="footer" class="footer-container">
+    <div class="max-width-wrapper">
+      <div class="footer-content-container">
+        <div class="footer-block">
+          <h6>SNOWVATION</h6>
+          
+          <p><a href="">Terms &amp; Conditions</a></p>
+          
+        </div>
+        <div class="footer-block">
+          <h6>ADDRESS</h6>
+          <p>9105 Hazen Drive,<br> Beverly Hills, CA 90210</p>
+        </div>
+        <div class="footer-block">
+          <h6>PHONE NUMBERS</h6>
+          <p>Phone: (970) 633-0322</p>
+        </div>
+        <div class="footer-block">
+          <h6>EMAILS</h6>
+          <p>info@snowvationllc.com</p>
+        </div>
+        <div class="footer-block">
+          <h6>Join us on</h6>
+     <!--      <div class="footer-social-links"><a href="#" target="_blank" class="footer-social-link twitter"></a> <a href="#" target="_blank" class="footer-social-link facebook"></a> <a href="#" target="_blank" class="footer-social-link google"></a> <a href="#" target="_blank" class="footer-social-link linkedin"></a></div> -->
+    		<div class="footer-social-links">
+     			<i class="fa fa-twitter"></i>
+     			<i class="fa fa-facebook"></i>
+     			<i class="fa fa-google-plus"></i>
+     			<i class="fa fa-linkedin"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  </footer>
+
+
+</div>
+
+<ng-include data-onload="onModalLoad()" src="signUpHtml"></ng-include>
+<ng-include data-onload="onModalLoad()" src="signInHtml"></ng-include>
+<ng-include data-onload="onModalLoad()" src="alertBox"></ng-include>
+
+
+</body>
+</html>
